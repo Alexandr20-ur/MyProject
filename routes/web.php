@@ -24,5 +24,5 @@ Route::post('/', [HomeController::class, 'store'])->name('posts.store');
 Route::get('/test1', [HomeController::class, 'test']);
 Route::get('/test2', [TestController::class, 'index']);
 Route::get('/page/about', [PageController::class, 'show'])->name('page.about');
-
+//Проверка
 Route::match(['get', 'post'], '/send', [ContactController::class, 'send']);
