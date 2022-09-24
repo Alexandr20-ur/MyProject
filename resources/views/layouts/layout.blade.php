@@ -40,9 +40,15 @@
                 <strong>Home</strong>
             </a>
 
-            <a href="{{ route('posts.create') }}">Create</a>
-            <a href="{{ route('register.create') }}">Регистрация</a>
+            @auth
+                <a href="#">{{ auth()->user()->name }}</a>--}}
+                <a href="{{ route('logout') }}">Log out</a>
+            @endauth
 
+            @guest
+                <a href="{{ route('register.create') }}">Регистрация</a>--}}
+                <a href="{{ route('login.create') }}">Login</a>
+            @endguest
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -53,6 +59,9 @@
 </header>
 
 <main>
+    <div class="container">
+        @include('layouts.alerts')
+    </div>
     @yield('content')
 </main>
 
