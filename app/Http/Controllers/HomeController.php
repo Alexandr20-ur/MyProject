@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\Post;
+use App\Models\Rubric;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use PhpParser\Node\Stmt\Case_;
+
+class HomeController extends Controller {
+
+    public function index(Request $request) {
+
+        $title = 'Home page';
+        $posts = Post::orderBy('id', 'desc')->get();
+        return view('home', compact('title', 'posts'));
+    }
+
+    public function create() {
+        $title = 'Create Post';
+        $rubrics = Rubric::pluck('title', 'id')->all();
+        return view('create', compact('title', 'rubrics'));
+    }
+
+    public function store(Request $request) {
+        // dd($request->all());
+        Post::create($request->all());
+        return redirect()->route('home');
+    }
+}
