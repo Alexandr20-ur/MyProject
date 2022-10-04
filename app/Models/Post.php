@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 
 /**
@@ -14,19 +16,13 @@ use Illuminate\Database\Eloquent\Builder;
  * @mixin Builder
  */
 class Post extends Model {
-
-    // protected $table = 'posts'; //Указание таблицы
-    // protected $primaryKey = 'post_id'; //Указание первичного ключа
-    // public $incrementing = false; //не инкриментируемое поле
-    // protected $keyType = 'string' // будем отслеживать что ключ -строка
-
-    // public $timestamps = false; //Ларавель не будет следить за заполнением этих полей
-    // protected $attributes = [
-    //     'content' => 'Lorem ipsum...'
-    // ]; //Значение по умолчанию
+    use HasFactory, Sluggable;
 
     protected $fillable = ['title', 'content', 'rubric_id'];
 
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
     public function rubric() {
         return $this->belongsTo(Rubric::class);
     }
@@ -37,5 +33,27 @@ class Post extends Model {
 
     public function getPostDate() {
         return Carbon::parse($this->created_at)->diffForHumans();
+    }
+
+    public function setTitleAttribute($value) {
+        $this->attributes['title'] = Str::title($value);
+    }
+
+    public function getTitleAttribute($value) {
+        return Str::upper($value);
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }

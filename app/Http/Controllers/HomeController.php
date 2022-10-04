@@ -12,9 +12,8 @@ use PhpParser\Node\Stmt\Case_;
 class HomeController extends Controller {
 
     public function index(Request $request) {
-
         $title = 'Home page';
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
         return view('home', compact('title', 'posts'));
     }
 

@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +55,8 @@ Route::middleware(['admin'])->group(function () {
 });
 
 Route::prefix('admin')->middleware('admin')->group(function() {
-    Route::get('/', [MainController::class, 'index']);
+    Route::get('/', [MainController::class, 'index'])->name('admin.index');
+    Route::resource('/categories', CategoryController::class);
+    Route::resource('/tags', TagController::class);
+    Route::resource('/posts', PostController::class);
 });
-

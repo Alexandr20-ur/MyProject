@@ -1,1 +1,10 @@
 import './bootstrap';
+import '../assets/admin/plugins/bootstrap/js/bootstrap.bundle.min';
+import '../assets/admin/plugins/jquery/jquery.min';
+import '../assets/admin/plugins/select2/js/select2.full';
+import '../assets/admin/js/adminlte.min';
+import '../assets/admin/js/demo';
+import '../assets/admin/plugins/fontawesome-free/css/all.min.css';
+import '../assets/admin/css/adminlte.min.css';
+import '../assets/admin/plugins/select2/css/select2.min.css';
+import '../assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css';

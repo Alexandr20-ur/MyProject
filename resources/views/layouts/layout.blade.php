@@ -41,9 +41,18 @@
             </a>
 
             @auth
-                <a href="#">{{ auth()->user()->name }}</a>--}}
+                <a href="#">
+                    {{ auth()->user()->name }}
+                    @if(auth()->user()->avatar)
+                        <img src="{{ asset('/public/storage/'. auth()->user()->avatar) }}" alt="" width="40px">
+                    @endif
+                </a>
                 <a href="{{ route('logout') }}">Log out</a>
+                @if(auth()->user()->is_admin)
+                        <a href="{{ route('admin.index') }}">Admin page</a>
+                @endif
             @endauth
+
 
             @guest
                 <a href="{{ route('register.create') }}">Регистрация</a>--}}
@@ -59,6 +68,7 @@
 </header>
 
 <main>
+
     <div class="container">
         @include('layouts.alerts')
     </div>

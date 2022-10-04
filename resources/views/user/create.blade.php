@@ -11,17 +11,8 @@
 
 
     <div class="container">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
 
-        <form action="{{ route('register.store') }}" class="mt-5" method="post">
+        <form action="{{ route('register.store') }}" class="mt-5" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -48,7 +39,12 @@
                 <input type="password" class="form-control" id="password_confirmation"  name="password_confirmation" placeholder="password_confirmation">
             </div>
 
-            <button type="submit" class="btn-primary">Submit</button>
+            <div class="mb-3">
+                <label for="avatar" class="form-label">Avatar</label>
+                <input type="file" class="form-control-file"  id="avatar"  name="avatar">
+            </div>
+
+            <button type="submit" class="btn-primary">Регистрация</button>
         </form>
     </div>
 

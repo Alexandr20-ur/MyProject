@@ -16,28 +16,35 @@ class UserController extends Controller
 
     public function store(Request $request) {
 
-        $request->validate(
-            [
+        $validate = [
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
-        ],
-            [
+            'avatar' => 'nullable|image',
+        ];
+        $message = [
             'password.required' => 'Поле не заполнено',
             'password.confirmed' => 'Данные не совпали',
             'email.unique' => 'Такой емайл уже существует',
+            'avatar.image' => 'Файл должен быть изображением',
+        ];
+        $request->validate($validate, $message);
 
-        ]);
+        if($request->hasFile('avatar')) {
+            $folder = date('Y-m-d');
+            $avatar = $request->file('avatar')->store("images/$folder");
+        }
 
-       $user = User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'avatar' => $avatar ?? null,
         ]);
 
-       session()->flash('success', 'Successful registration');
-       Auth::login($user);
-       return redirect()->route('home');
+        session()->flash('success', 'Successful registration');
+        Auth::login($user);
+        return redirect()->route('home');
     }
 
     public function LoginForm() {

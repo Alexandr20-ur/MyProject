@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    @parent:: {{ $title }} 
+    @parent:: {{ $title }}
 @endsection
 @section('header')
     @parent
@@ -12,14 +12,12 @@
         <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1>{{ $title }}</h1>
-            
         </div>
         </div>
     </section>
 
     <div class="album py-5 bg-light">
         <div class="container">
-                
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($posts as $post)
 
@@ -38,17 +36,17 @@
                             <small class="text-muted">
 
                                 {{ $post->getPostDate() }}
-                            
+{{--                                {{ $post->created_at->format('d.m.Y') }}--}}
                             </small>
                             </div>
                         </div>
                     </div>
                 </div>
                 @endforeach
-
+                <div class="col-md-10">
+                    {{ $posts->onEachSide(2)->links('vendor.pagination.bootstrap-4') }}
+                </div>
             </div>
-
-
         </div>
     </div>
 @endsection
