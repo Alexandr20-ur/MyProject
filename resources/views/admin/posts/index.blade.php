@@ -52,13 +52,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($posts as $posts)
+                            @foreach($posts as $post)
                                 <tr>
-                                <td>{{ $posts->id }}</td>
-                                <td>{{ $posts->title }}</td>
-                                <td>{{ $posts->category->title }}</td>
-                                <td>{{ $psots->tags }}</td>
-                                <td>{{ $posts->created_at }}</td>
+                                <td>{{ $post->id }}</td>
+                                <td>{{ $post->title }}</td>
+                                <td>{{ $post->category->title }}</td>
+                                <td>{{ $post->tags->pluck('title')->join(', ') }}</td>
+                                <td>{{ $post->created_at }}</td>
                                 <td>
                                     <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                         <li class="fas fa-pencil-alt"></li>

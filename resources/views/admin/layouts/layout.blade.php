@@ -8,7 +8,18 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    @vite(['resources/js/app.js'])
+    @vite('resources/js/app.js')
+    @vite([
+    'resources/assets/admin/plugins/fontawesome-free/css/all.min.css',
+    'resources/assets/admin/css/adminlte.min.css',
+    'resources/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js',
+    'resources/assets/admin/plugins/jquery/jquery.min.js',
+    'resources/assets/admin/js/adminlte.min.js',
+    'resources/assets/admin/js/demo.js',
+    'resources/assets/admin/plugins/select2/css/select2.css',
+    'resources/assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.css',
+    'resources/assets/admin/plugins/select2/js/select2.full.js',
+    ])
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -260,7 +271,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('posts.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Список постов</p>
+                                    <p>Список статей</p>
                                 </a>
                             </li>
                             <li class="nav-item">

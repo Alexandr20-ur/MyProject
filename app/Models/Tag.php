@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 /**
  * @method static create(array $all)
  * @method static paginate(int $int)
+ * @method static pluck()
  */
 class Tag extends Model {
     use HasFactory, Sluggable;

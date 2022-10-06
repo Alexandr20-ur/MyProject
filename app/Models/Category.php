@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static paginate(int $int)
+ * @method static pluck(string $string, string $string1)
  */
 class Category extends Model {
     use HasFactory, Sluggable;

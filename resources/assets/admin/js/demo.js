@@ -50,6 +50,8 @@
     return $block
   }
 
+  $('.select2').select2()
+
   var $sidebar = $('.control-sidebar')
   var $container = $('<div />', {
     class: 'p-3 control-sidebar-content'
